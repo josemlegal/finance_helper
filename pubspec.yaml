@@ -1,12 +1,17 @@
 name: finance_helper
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  dio: ^5.1.1
+  get_it: ^7.2.0
+  go_router: ^6.0.1
+  hooks_riverpod: ^2.3.3
+  stacked_services: ^1.0.0
   flutter:
     sdk: flutter
 
