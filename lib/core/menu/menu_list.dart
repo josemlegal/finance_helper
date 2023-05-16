@@ -15,23 +15,23 @@ class MenuItem {
 
 const appMenuItems = <MenuItem>[
   MenuItem(
+      title: 'Home',
+      subTitle: 'Bienvenido a Finance Helper.',
+      icon: Icons.home_rounded,
+      link: '/home-view'),
+  MenuItem(
       title: 'Transactions',
-      subTitle: 'Tx Page',
+      subTitle: 'Controla tus ingresos/egresos.',
       icon: Icons.people_outlined,
       link: '/transactions-view'),
   MenuItem(
-      title: 'Settings',
-      subTitle: 'Configuraciones de la app',
-      icon: Icons.settings_outlined,
-      link: '/settings-view'),
-  MenuItem(
-      title: 'Home',
-      subTitle: 'Home de la app',
-      icon: Icons.home_max_outlined,
-      link: '/home-view'),
-  MenuItem(
       title: 'Dashboard',
-      subTitle: 'Dashboard',
+      subTitle: 'Resumen de tus finanzas.',
       icon: Icons.dashboard_outlined,
       link: '/dashboard-view'),
+  MenuItem(
+      title: 'Settings',
+      subTitle: 'Configuraciones de la app.',
+      icon: Icons.settings_outlined,
+      link: '/settings-view'),
 ];
