@@ -1,3 +1,4 @@
+import 'package:finance_helper/presentation/transactions/widgets/list_of_transactions.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsView extends StatelessWidget {
@@ -10,8 +11,8 @@ class TransactionsView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Transactions'),
       ),
-      body: const Center(
-        child: Text('Transactions'),
+      body: Center(
+        child: ListOfTransactions(),
       ),
     );
   }
