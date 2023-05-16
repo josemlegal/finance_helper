@@ -41,7 +41,6 @@ class _SideMenuState extends State<SideMenu> {
           ),
         ),
         const Divider(),
-        const _LicensesButton(),
         _LogoutButton(colors: colors),
       ],
     );
@@ -65,23 +64,6 @@ class _LogoutButton extends StatelessWidget {
           '/login-view',
         );
       },
-    );
-  }
-}
-
-class _LicensesButton extends StatelessWidget {
-  const _LicensesButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        showAboutDialog(
-          context: context,
-          children: [const Text('Deseas ver las licencias de la apliacion?')],
-        );
-      },
-      child: const Text('Licencias'),
     );
   }
 }
