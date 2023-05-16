@@ -18,10 +18,20 @@ const appMenuItems = <MenuItem>[
       title: 'Transactions',
       subTitle: 'Tx Page',
       icon: Icons.people_outlined,
-      link: '/'),
+      link: '/transactions-view'),
   MenuItem(
       title: 'Settings',
       subTitle: 'Configuraciones de la app',
-      icon: Icons.settings,
+      icon: Icons.settings_outlined,
       link: '/settings-view'),
+  MenuItem(
+      title: 'Home',
+      subTitle: 'Home de la app',
+      icon: Icons.home_max_outlined,
+      link: '/home-view'),
+  MenuItem(
+      title: 'Dashboard',
+      subTitle: 'Dashboard',
+      icon: Icons.dashboard_outlined,
+      link: '/dashboard-view'),
 ];
