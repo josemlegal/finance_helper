@@ -32,7 +32,7 @@ class _SideMenuState extends State<SideMenu> {
       children: [
         Padding(
           padding: EdgeInsets.fromLTRB(25, hasNotch ? 10 : 20, 16, 10),
-          child: const Text('ITTI APP'),
+          child: const Text('FINANCE HELPER'),
         ),
         ...appMenuItems.map(
           (item) => NavigationDrawerDestination(
