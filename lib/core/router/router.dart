@@ -1,9 +1,21 @@
+import 'package:finance_helper/presentation/login/views/login_view.dart';
+import 'package:finance_helper/presentation/onboarding/views/onboarding_view.dart';
 import 'package:finance_helper/presentation/views.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/home-view',
+  initialLocation: '/onboarding-view',
   routes: [
+    GoRoute(
+      path: '/onboarding-view',
+      name: OnboardingView.name,
+      builder: (context, state) => const OnboardingView(),
+    ),
+    GoRoute(
+      path: '/login-view',
+      name: LoginView.name,
+      builder: (context, state) => LoginView(),
+    ),
     GoRoute(
       path: '/dashboard-view',
       name: DashboardView.name,
