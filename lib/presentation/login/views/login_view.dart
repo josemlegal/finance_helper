@@ -5,16 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// ignore: must_be_immutable
 class LoginView extends HookConsumerWidget {
   static const name = 'login-view';
 
-  TextEditingController controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
   LoginView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginController = ref.read(loginViewControllerProvider);
+    final loginController = ref.read(loginViewProvider);
     final keyForm = GlobalKey<FormState>();
     final colors = Theme.of(context).colorScheme;
 
@@ -28,15 +27,15 @@ class LoginView extends HookConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Container(
-                //   height: 180,
-                //   width: 150,
-                //   decoration: const BoxDecoration(
-                //     image: DecorationImage(
-                //       image: AssetImage('assets/images/logo-itti.png'),
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  height: 180,
+                  width: 150,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/logo.png'),
+                    ),
+                  ),
+                ),
                 _UsernameInput(loginController: loginController),
                 _PasswordInput(loginController: loginController),
                 const SizedBox(

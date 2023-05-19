@@ -19,6 +19,6 @@ class LoginViewController extends ChangeNotifier {
   }
 }
 
-final loginViewControllerProvider = ChangeNotifierProvider(
+final loginViewProvider = ChangeNotifierProvider(
   (ref) => LoginViewController(),
 );

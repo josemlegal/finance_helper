@@ -1,5 +1,7 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:finance_helper/core/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class SlidesInfo {
@@ -9,21 +11,6 @@ class SlidesInfo {
 
   SlidesInfo(this.title, this.caption, this.imageUrl);
 }
-
-final slides = <SlidesInfo>[
-  SlidesInfo(
-      'Misión',
-      'Generar impacto y transformar el negocio de nuestros clientes a traves de la innovación tecnologica.',
-      'src/assets/images/logo-itti.png'),
-  SlidesInfo(
-      'Visión',
-      'Soñamos con ser líderes en innovación tecnológica con alcance global, brindando soluciones de clase mundial que generen un verdadero impacto en el negocio de nuestros clientes.',
-      'src/assets/images/logo-itti.png'),
-  SlidesInfo(
-      'Nuestra historia',
-      'Iniciamos nuestras operaciones en el 2004, con el desarrollo de tecnología enfocados en el sector financiero a través de nuestro CORE bancario ITGF. ITGF es una solución completa de software orientada a entidades financieras tanto reguladas como no reguladas en el Paraguay y con el tiempo pasó a ser el software más utilizado en el mercado.',
-      'src/assets/images/logo-itti.png')
-];
 
 class OnboardingView extends StatefulWidget {
   static const name = '/onboarding-view';
@@ -122,15 +109,11 @@ class _Slide extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Container(
-            //   height: 180,
-            //   width: 150,
-            //   decoration: const BoxDecoration(
-            //     image: DecorationImage(
-            //       image: AssetImage('assets/images/logo-itti.png'),
-            //     ),
-            //   ),
-            // ),
+            SizedBox(
+              height: 150,
+              width: 150,
+              child: Image.asset(imageUrl),
+            ),
             const SizedBox(height: 20),
             Text(
               title,
