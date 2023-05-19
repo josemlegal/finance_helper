@@ -1,34 +1,55 @@
+import 'package:finance_helper/core/utils/date_parser.dart';
+import 'package:finance_helper/domain/models/transaction_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ListOfTransactions extends StatelessWidget {
   ListOfTransactions({super.key});
 
-  final mockData = [
-    {
-      'id': 1,
-      'title': 'Supermercado',
-      'subtitle': 'Compra de la semana',
-      'amount': 1000,
-      'icon': Icons.money,
-    }
+  final List<Transaction> transactions = [
+    Transaction(
+      id: 1,
+      category: 'Supermercado',
+      descrption: 'Bought some food',
+      amount: 10000,
+      icon: Icons.access_time_filled,
+      createAt: DateTime.now(),
+    ),
+    Transaction(
+      id: 2,
+      category: 'Alquiler',
+      descrption: 'Bought some food',
+      amount: 10000,
+      icon: Icons.food_bank,
+      createAt: DateTime.now(),
+    ),
+    Transaction(
+      id: 3,
+      category: 'Farmacia',
+      descrption: 'Bought some food',
+      amount: 10000,
+      icon: Icons.food_bank,
+      createAt: DateTime.now(),
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        ListTile(
-          leading: Icon(
-            Icons.money,
-            color: Colors.green,
-          ),
-          title: Text('Supermercado'),
-          subtitle: Text('Compra de la semana'),
-          trailing: Icon(
-            Icons.arrow_downward_outlined,
-            color: Colors.red,
-          ),
-        ),
+        for (Transaction transaction in transactions)
+          ListTile(
+            leading: Icon(transaction.icon),
+            title: Text(transaction.category),
+            subtitle:
+                Text("${transaction.descrption} \n Gs. ${transaction.amount}"),
+            isThreeLine: true,
+            dense: true,
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              context.push('/transaction-details');
+            },
+          )
       ],
     );
   }
