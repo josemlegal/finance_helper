@@ -39,13 +39,24 @@ class ListOfTransactions extends StatelessWidget {
       children: [
         for (Transaction transaction in transactions)
           ListTile(
-            leading: Icon(transaction.icon),
+            visualDensity: VisualDensity.standard,
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(transaction.icon),
+              ],
+            ),
             title: Text(transaction.category),
-            subtitle:
-                Text("${transaction.descrption} \n Gs. ${transaction.amount}"),
+            subtitle: Text(
+                "${dateParser(transaction.createAt)} \nGs. ${transaction.amount}"),
             isThreeLine: true,
             dense: true,
-            trailing: const Icon(Icons.arrow_forward_ios),
+            trailing: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.arrow_forward_ios),
+              ],
+            ),
             onTap: () {
               context.push('/transaction-details');
             },
