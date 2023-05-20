@@ -1,6 +1,5 @@
 import 'package:finance_helper/presentation/home/controllers/home_view_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -27,7 +26,9 @@ class TransactionForm extends HookConsumerWidget {
               children: [
                 const _CategoryDropdownButton(),
                 _DescriptionInput(homeController: homeController),
+                SizedBox(height: mediaQueryData.size.height * 0.05),
                 _AmountInput(homeController: homeController),
+                SizedBox(height: mediaQueryData.size.height * 0.05),
                 _SubmitButton(
                     colors: Theme.of(context).colorScheme, keyForm: keyForm)
               ],
@@ -94,7 +95,6 @@ class _CategoryDropdownButtonState extends State<_CategoryDropdownButton> {
     return DropdownButton<String>(
       value: dropdownValue,
       icon: const Icon(Icons.arrow_downward),
-      elevation: 0,
       underline: Container(
         height: 2,
         color: colors.primary,
