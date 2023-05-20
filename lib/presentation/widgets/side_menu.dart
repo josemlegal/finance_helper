@@ -15,7 +15,6 @@ class _SideMenuState extends State<SideMenu> {
   int navDrawerIndex = 0;
   @override
   Widget build(BuildContext context) {
-    final hasNotch = MediaQuery.of(context).padding.top > 35;
     final colors = Theme.of(context).colorScheme;
 
     return NavigationDrawer(
@@ -30,10 +29,7 @@ class _SideMenuState extends State<SideMenu> {
         widget.scaffoldKey.currentState?.closeDrawer();
       },
       children: [
-        Padding(
-          padding: EdgeInsets.fromLTRB(25, hasNotch ? 10 : 20, 16, 10),
-          child: const Text('FINANCE HELPER'),
-        ),
+        const _AccountHeader(),
         ...appMenuItems.map(
           (item) => NavigationDrawerDestination(
             icon: Icon(item.icon),
@@ -43,6 +39,25 @@ class _SideMenuState extends State<SideMenu> {
         const Divider(),
         _LogoutButton(colors: colors),
       ],
+    );
+  }
+}
+
+class _AccountHeader extends StatelessWidget {
+  const _AccountHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return const UserAccountsDrawerHeader(
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+      ),
+      accountName: Text('Jose Martinez'),
+      accountEmail: Text('josemlegal97@gmail.com'),
+      currentAccountPicture: CircleAvatar(
+        backgroundColor: Colors.white,
+        backgroundImage: NetworkImage('https://picsum.photos/id/342/200/300'),
+      ),
     );
   }
 }
