@@ -4,34 +4,37 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ListOfTransactions extends StatelessWidget {
-  ListOfTransactions({super.key});
+  final List<Transaction> transactions;
 
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 1,
-      category: 'Supermercado',
-      descrption: 'Bought some food',
-      amount: 10000,
-      icon: Icons.access_time_filled,
-      createAt: DateTime.now(),
-    ),
-    Transaction(
-      id: 2,
-      category: 'Alquiler',
-      descrption: 'Bought some food',
-      amount: 10000,
-      icon: Icons.food_bank,
-      createAt: DateTime.now(),
-    ),
-    Transaction(
-      id: 3,
-      category: 'Farmacia',
-      descrption: 'Bought some food',
-      amount: 10000,
-      icon: Icons.food_bank,
-      createAt: DateTime.now(),
-    ),
-  ];
+  const ListOfTransactions({Key? key, required this.transactions})
+      : super(key: key);
+
+  // final List<Transaction> transactions = [
+  //   Transaction(
+  //     id: 1,
+  //     category: 'Supermercado',
+  //     descrption: 'Bought some food',
+  //     amount: 10000,
+  //     icon: Icons.access_time_filled,
+  //     createAt: DateTime.now(),
+  //   ),
+  //   Transaction(
+  //     id: 2,
+  //     category: 'Alquiler',
+  //     descrption: 'Bought some food',
+  //     amount: 10000,
+  //     icon: Icons.food_bank,
+  //     createAt: DateTime.now(),
+  //   ),
+  //   Transaction(
+  //     id: 3,
+  //     category: 'Farmacia',
+  //     descrption: 'Bought some food',
+  //     amount: 10000,
+  //     icon: Icons.food_bank,
+  //     createAt: DateTime.now(),
+  //   ),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -40,26 +43,28 @@ class ListOfTransactions extends StatelessWidget {
         for (Transaction transaction in transactions)
           ListTile(
             visualDensity: VisualDensity.standard,
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(transaction.icon),
-              ],
+            // leading: Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Icon(transaction.icon),
+            //   ],
+            // ),
+            title: Text(
+              transaction.description,
             ),
-            title: Text(transaction.category),
-            subtitle: Text(
-                "${dateParser(transaction.createAt)} \nGs. ${transaction.amount}"),
-            isThreeLine: true,
-            dense: true,
-            trailing: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.arrow_forward_ios),
-              ],
-            ),
-            onTap: () {
-              context.push('/transaction-details');
-            },
+            // subtitle: Text(
+            //     "${dateParser(transaction.createAt)} \nGs. ${transaction.amount}"),
+            // isThreeLine: true,
+            // dense: true,
+            // trailing: const Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Icon(Icons.arrow_forward_ios),
+            //   ],
+            // ),
+            // onTap: () {
+            //   context.push('/transaction-details');
+            // },
           )
       ],
     );
