@@ -3,10 +3,10 @@ import 'package:finance_helper/core/router/router.dart';
 import 'package:finance_helper/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'presentation/settings/controllers/settings_controller.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const ProviderScope(
       child: MainApp(),
