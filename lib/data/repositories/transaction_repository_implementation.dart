@@ -18,7 +18,8 @@ class TransactionRepositoryImplementation implements TransactionRepository {
   Future<List<Transaction>> getTransactions() {
     return _call(() async {
       print('una lina antea la consulta http');
-      final response = await _httpService.dio.get("/transaction/");
+      final response = await _httpService.dio.get(
+          "https://e254-2803-2a00-9-bfdf-9cc6-8f6d-8eb1-1aac.ngrok-free.app/api/transaction");
       print('Me ejecute en el implementation');
 
       return (response.data as List)
