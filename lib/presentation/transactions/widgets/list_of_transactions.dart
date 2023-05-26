@@ -9,33 +9,6 @@ class ListOfTransactions extends StatelessWidget {
   const ListOfTransactions({Key? key, required this.transactions})
       : super(key: key);
 
-  // final List<Transaction> transactions = [
-  //   Transaction(
-  //     id: 1,
-  //     category: 'Supermercado',
-  //     descrption: 'Bought some food',
-  //     amount: 10000,
-  //     icon: Icons.access_time_filled,
-  //     createAt: DateTime.now(),
-  //   ),
-  //   Transaction(
-  //     id: 2,
-  //     category: 'Alquiler',
-  //     descrption: 'Bought some food',
-  //     amount: 10000,
-  //     icon: Icons.food_bank,
-  //     createAt: DateTime.now(),
-  //   ),
-  //   Transaction(
-  //     id: 3,
-  //     category: 'Farmacia',
-  //     descrption: 'Bought some food',
-  //     amount: 10000,
-  //     icon: Icons.food_bank,
-  //     createAt: DateTime.now(),
-  //   ),
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,19 +25,19 @@ class ListOfTransactions extends StatelessWidget {
             title: Text(
               transaction.description,
             ),
-            // subtitle: Text(
-            //     "${dateParser(transaction.createAt)} \nGs. ${transaction.amount}"),
-            // isThreeLine: true,
-            // dense: true,
-            // trailing: const Column(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Icon(Icons.arrow_forward_ios),
-            //   ],
-            // ),
-            // onTap: () {
-            //   context.push('/transaction-details');
-            // },
+            subtitle:
+                Text("${transaction.description} \nGs. ${transaction.amount}"),
+            isThreeLine: true,
+            dense: true,
+            trailing: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.arrow_forward_ios),
+              ],
+            ),
+            onTap: () {
+              context.push('/transaction-details');
+            },
           )
       ],
     );
