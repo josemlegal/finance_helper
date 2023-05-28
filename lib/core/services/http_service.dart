@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 
 class HttpService {
   final _dio = Dio();
-  String baseUrl = "http://localhost:4200/api";
+  String baseUrl =
+      "https://57c5-2803-2a00-9-bfdf-d9e1-f9cf-1b28-1f6f.ngrok-free.app/api";
 
   HttpService() {
     _dio.options.baseUrl = baseUrl;
