@@ -1,11 +1,8 @@
-import 'package:finance_helper/presentation/login/views/login_view.dart';
-import 'package:finance_helper/presentation/onboarding/views/onboarding_view.dart';
-import 'package:finance_helper/presentation/transactions/views/transaction_details.dart';
 import 'package:finance_helper/presentation/views.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/transactions-view',
+  initialLocation: '/home-view',
   routes: [
     GoRoute(
       path: '/onboarding-view',
