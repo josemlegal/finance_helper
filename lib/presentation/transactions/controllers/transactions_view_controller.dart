@@ -34,13 +34,13 @@ class TransactionViewController extends ChangeNotifier {
 
   Future<void> getTransactions() async {
     try {
-      print('me ejecute en el controller');
+      // print('me ejecute en el controller');
       final response = await _transactionRepository.getTransactions();
-      print('me ejecute despues del response en el controller');
+      // print('me ejecute despues del response en el controller');
       _transactions = response;
       notifyListeners();
     } catch (err) {
-      print(err.toString());
+      // print(err.toString());
 
       // _handleError(
       //     title: "Could not get transactions.", message: err.toString());
