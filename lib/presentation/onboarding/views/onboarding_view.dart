@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:finance_helper/core/constants/constants.dart';
+import 'package:finance_helper/presentation/onboarding/controllers/onboarding_view_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SlidesInfo {
   final String title;
@@ -11,14 +12,14 @@ class SlidesInfo {
   SlidesInfo(this.title, this.caption, this.imageUrl);
 }
 
-class OnboardingView extends StatefulWidget {
+class OnboardingView extends StatefulHookConsumerWidget {
   const OnboardingView({super.key});
 
   @override
-  State<OnboardingView> createState() => _OnboardingViewState();
+  ConsumerState<OnboardingView> createState() => _OnboardingViewState();
 }
 
-class _OnboardingViewState extends State<OnboardingView> {
+class _OnboardingViewState extends ConsumerState<OnboardingView> {
   final PageController pageViewController = PageController();
 
   bool endReached = false;
@@ -45,6 +46,7 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   Widget build(BuildContext context) {
+    final onboardingViewController = ref.read(onboardingProvider);
     return Scaffold(
       body: Stack(
         children: [
@@ -55,7 +57,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 .map((slideData) => _Slide(
                       title: slideData.title,
                       caption: slideData.caption,
-                      imageUrl: slideData.imageUrl!,
+                      // imageUrl: slideData.imageUrl!,
                     ))
                 .toList(),
           ),
@@ -64,7 +66,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               top: 50,
               child: TextButton(
                 child: const Text('Skip'),
-                onPressed: () => context.push('/login-view'),
+                onPressed: () => onboardingViewController.navigateToLogin(),
               )),
           endReached
               ? Positioned(
@@ -75,7 +77,8 @@ class _OnboardingViewState extends State<OnboardingView> {
                     delay: const Duration(seconds: 1),
                     child: FilledButton(
                       child: const Text('Comenzar'),
-                      onPressed: () => context.pushReplacement('/login-view'),
+                      onPressed: () =>
+                          onboardingViewController.navigateToLogin(),
                     ),
                   ),
                 )
@@ -89,10 +92,13 @@ class _OnboardingViewState extends State<OnboardingView> {
 class _Slide extends StatelessWidget {
   final String title;
   final String caption;
-  final String imageUrl;
+  // final String imageUrl;
 
-  const _Slide(
-      {required this.title, required this.caption, required this.imageUrl});
+  const _Slide({
+    required this.title,
+    required this.caption,
+    // required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +112,11 @@ class _Slide extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 150,
-              width: 150,
-              child: Image.asset(imageUrl),
-            ),
+            // SizedBox(
+            //   height: 150,
+            //   width: 150,
+            //   child: Image.asset(imageUrl),
+            // ),
             const SizedBox(height: 20),
             Text(
               title,
