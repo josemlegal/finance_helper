@@ -1,5 +1,7 @@
 import 'package:finance_helper/core/dependency_injection/locator.dart';
-import 'package:finance_helper/core/router/router.dart';
+import 'package:finance_helper/core/dependency_injection/setup_snackbar_ui.dart';
+import 'package:finance_helper/core/router/router.dart' as router;
+import 'package:stacked_services/stacked_services.dart' as services;
 import 'package:finance_helper/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,6 +15,7 @@ void main() {
     ),
   );
   setupLocator();
+  setupSnackbarUi();
 }
 
 class MainApp extends ConsumerWidget {
@@ -22,12 +25,14 @@ class MainApp extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final AppTheme appTheme = ref.watch(themeNotifierProvider);
 
-    return MaterialApp.router(
+    return MaterialApp(
       themeMode: appTheme.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       title: 'Finance Helper',
-      routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       theme: appTheme.getTheme(),
+      navigatorKey: services.StackedService.navigatorKey,
+      initialRoute: router.Router.onboardingView,
+      onGenerateRoute: router.Router.generateRoute,
     );
   }
 }

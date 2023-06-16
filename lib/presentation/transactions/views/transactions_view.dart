@@ -42,6 +42,7 @@ class _TransactionsViewState extends ConsumerState<TransactionsView> {
             ? const CircularProgressIndicator()
             : ListOfTransactions(
                 transactions: transactions,
+                onPressed: transactionsViewController.goToTransactionDetails,
               ),
       ),
       floatingActionButton:

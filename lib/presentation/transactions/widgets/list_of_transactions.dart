@@ -1,18 +1,27 @@
 import 'package:finance_helper/domain/transactions/models/transaction_model.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ListOfTransactions extends StatelessWidget {
+class ListOfTransactions extends StatefulHookConsumerWidget {
   final List<Transaction> transactions;
+  final VoidCallback onPressed;
 
-  const ListOfTransactions({Key? key, required this.transactions})
-      : super(key: key);
+  const ListOfTransactions({
+    Key? key,
+    required this.transactions,
+    required this.onPressed,
+  }) : super(key: key);
 
+  @override
+  ConsumerState<ListOfTransactions> createState() => _ListOfTransactionsState();
+}
+
+class _ListOfTransactionsState extends ConsumerState<ListOfTransactions> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (Transaction transaction in transactions)
+        for (Transaction transaction in widget.transactions)
           ListTile(
             visualDensity: VisualDensity.standard,
             // leading: Column(
@@ -35,7 +44,7 @@ class ListOfTransactions extends StatelessWidget {
               ],
             ),
             onTap: () {
-              context.push('/transaction-details');
+              widget.onPressed();
             },
           )
       ],
