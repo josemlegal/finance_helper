@@ -12,6 +12,17 @@ const colorList = <Color>[
   Colors.pinkAccent,
 ];
 
+class AppColors {
+  static const darkPrimaryColor = Color(0xFF512DA8);
+  static const lightPrimaryColor = Color(0xFFD1C4E9);
+  static const primaryColor = Color(0xFF673AB7);
+  static const primaryTextColor = Color(0xFF212121);
+  static const secondaryTextColor = Color(0xFF757575);
+  static const dividerColor = Color(0xFFBDBDBD);
+  static const accentColor = Color(0xFF7C4DFF);
+  static const textIconsColor = Color(0xFFFFFFFF);
+}
+
 class AppTheme {
   final int selectedColor;
   final bool isDarkMode;
