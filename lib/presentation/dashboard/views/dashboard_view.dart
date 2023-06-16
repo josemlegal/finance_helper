@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class DashboardView extends StatelessWidget {
-  static const String name = '/dashboard-view';
-
   const DashboardView({super.key});
 
   @override

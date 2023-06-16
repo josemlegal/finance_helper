@@ -6,8 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginView extends HookConsumerWidget {
-  static const name = 'login-view';
-
   final TextEditingController controller = TextEditingController();
   LoginView({super.key});
 

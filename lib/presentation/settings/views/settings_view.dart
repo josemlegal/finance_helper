@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SettingsView extends ConsumerWidget {
-  static const name = 'settings-view';
-
   const SettingsView({super.key});
 
   @override

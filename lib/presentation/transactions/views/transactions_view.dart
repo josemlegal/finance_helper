@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TransactionsView extends StatefulHookConsumerWidget {
-  static const String name = '/transactions-view';
   const TransactionsView({super.key});
 
   @override
@@ -17,7 +16,7 @@ class _TransactionsViewState extends ConsumerState<TransactionsView> {
 
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(transactionsProvider).fetchStates();
       if (mounted) {
         setState(() {

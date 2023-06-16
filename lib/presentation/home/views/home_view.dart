@@ -3,7 +3,6 @@ import 'package:finance_helper/presentation/widgets/side_menu.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
-  static const String name = 'home-view';
   const HomeView({super.key});
 
   @override

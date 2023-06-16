@@ -12,8 +12,6 @@ class SlidesInfo {
 }
 
 class OnboardingView extends StatefulWidget {
-  static const name = '/onboarding-view';
-
   const OnboardingView({super.key});
 
   @override
