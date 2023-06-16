@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:finance_helper/core/error/error_handling.dart';
 import 'package:finance_helper/core/services/http_service.dart';
-import 'package:finance_helper/domain/models/transaction_model.dart';
-import 'package:finance_helper/domain/repositories/transaction_repository.dart';
+import 'package:finance_helper/domain/transactions/models/transaction_model.dart';
+import 'package:finance_helper/domain/transactions/repositories/transaction_repository.dart';
 
 class TransactionRepositoryImplementation implements TransactionRepository {
   final HttpService _httpService;

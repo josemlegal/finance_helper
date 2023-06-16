@@ -1,4 +1,4 @@
-import 'package:finance_helper/domain/models/user_model.dart';
+import 'package:finance_helper/domain/user/models/user_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
