@@ -1,21 +1,27 @@
+import 'package:finance_helper/core/dependency_injection/locator.dart';
 import 'package:finance_helper/core/menu/menu_list.dart';
+import 'package:finance_helper/presentation/home/controllers/home_view_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:stacked_services/stacked_services.dart';
 
-class SideMenu extends StatefulWidget {
+class SideMenu extends StatefulHookConsumerWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final NavigationService navigationService = locator<NavigationService>();
 
-  const SideMenu({super.key, required this.scaffoldKey});
+  SideMenu({super.key, required this.scaffoldKey});
 
   @override
-  State<SideMenu> createState() => _SideMenuState();
+  ConsumerState<SideMenu> createState() => _SideMenuState();
 }
 
-class _SideMenuState extends State<SideMenu> {
+class _SideMenuState extends ConsumerState<SideMenu> {
   int navDrawerIndex = 0;
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+
+    final homeViewController = ref.read(homeViewProvider);
 
     return NavigationDrawer(
       selectedIndex: navDrawerIndex,
@@ -25,7 +31,9 @@ class _SideMenuState extends State<SideMenu> {
         });
 
         final menuItem = appMenuItems[value];
-        context.push(menuItem.link);
+        widget.navigationService.navigateTo(
+          menuItem.link,
+        );
         widget.scaffoldKey.currentState?.closeDrawer();
       },
       children: [
@@ -37,7 +45,8 @@ class _SideMenuState extends State<SideMenu> {
           ),
         ),
         const Divider(),
-        _LogoutButton(colors: colors),
+        _LogoutButton(
+            colors: colors, onPressed: homeViewController.goToLoginView),
       ],
     );
   }
@@ -62,22 +71,24 @@ class _AccountHeader extends StatelessWidget {
   }
 }
 
-class _LogoutButton extends StatelessWidget {
-  const _LogoutButton({
-    required this.colors,
-  });
-
+class _LogoutButton extends StatefulHookConsumerWidget {
   final ColorScheme colors;
+  final VoidCallback onPressed;
 
+  const _LogoutButton({required this.colors, required this.onPressed});
+
+  @override
+  ConsumerState<_LogoutButton> createState() => _LogoutButtonState();
+}
+
+class _LogoutButtonState extends ConsumerState<_LogoutButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
       label: const Text('Logout'),
-      icon: Icon(Icons.logout_outlined, color: colors.primary),
+      icon: Icon(Icons.logout_outlined, color: widget.colors.primary),
       onPressed: () {
-        context.push(
-          '/login-view',
-        );
+        widget.onPressed();
       },
     );
   }

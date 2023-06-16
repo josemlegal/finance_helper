@@ -1,8 +1,14 @@
+import 'package:finance_helper/core/dependency_injection/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewController extends ChangeNotifier {
-  HomeViewController();
+  final NavigationService _navigationService;
+
+  HomeViewController({
+    required NavigationService navigationService,
+  }) : _navigationService = navigationService;
 
   bool isLoading = true;
 
@@ -13,8 +19,14 @@ class HomeViewController extends ChangeNotifier {
       return null;
     }
   }
+
+  void goToLoginView() {
+    _navigationService.pushNamedAndRemoveUntil('/login-view');
+  }
 }
 
 final homeViewProvider = ChangeNotifierProvider(
-  (ref) => HomeViewController(),
+  (ref) => HomeViewController(
+    navigationService: locator<NavigationService>(),
+  ),
 );
