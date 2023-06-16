@@ -1,43 +1,34 @@
 import 'package:finance_helper/presentation/views.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
 
-final appRouter = GoRouter(
-  initialLocation: '/home-view',
-  routes: [
-    GoRoute(
-      path: '/onboarding-view',
-      name: OnboardingView.name,
-      builder: (context, state) => const OnboardingView(),
-    ),
-    GoRoute(
-      path: '/login-view',
-      name: LoginView.name,
-      builder: (context, state) => LoginView(),
-    ),
-    GoRoute(
-      path: '/dashboard-view',
-      name: DashboardView.name,
-      builder: (context, state) => const DashboardView(),
-    ),
-    GoRoute(
-      path: '/home-view',
-      name: HomeView.name,
-      builder: (context, state) => const HomeView(),
-    ),
-    GoRoute(
-      path: '/transactions-view',
-      name: TransactionsView.name,
-      builder: (context, state) => const TransactionsView(),
-    ),
-    GoRoute(
-      path: '/transaction-details',
-      name: TransactionDetails.name,
-      builder: (context, state) => const TransactionDetails(),
-    ),
-    GoRoute(
-      path: '/settings-view',
-      name: SettingsView.name,
-      builder: (context, state) => const SettingsView(),
-    ),
-  ],
-);
+class Router {
+  static const homeView = '/home-view';
+  static const transactionsView = '/transactions-view';
+  static const loginView = '/login-view';
+  static const onboardingView = '/onboarding-view';
+  static const settingsView = '/settings-view';
+  static const transactionDetails = '/transaction-detail';
+  static const dashboardView = '/dashboard-view';
+
+  static Route<dynamic>? generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case homeView:
+        return MaterialPageRoute(builder: (_) => const HomeView());
+      case transactionsView:
+        return MaterialPageRoute(builder: (_) => const TransactionsView());
+      case loginView:
+        return MaterialPageRoute(builder: (_) => LoginView());
+      case onboardingView:
+        return MaterialPageRoute(builder: (_) => const OnboardingView());
+      case settingsView:
+        return MaterialPageRoute(builder: (_) => const SettingsView());
+      case transactionDetails:
+        return MaterialPageRoute(builder: (_) => const TransactionDetails());
+      case dashboardView:
+        return MaterialPageRoute(builder: (_) => const DashboardView());
+
+      default:
+        return null;
+    }
+  }
+}
