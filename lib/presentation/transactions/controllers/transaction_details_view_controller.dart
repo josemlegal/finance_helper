@@ -35,34 +35,16 @@ class TransactionViewController extends ChangeNotifier {
     }
   }
 
-  Future<void> getTransactions() async {
-    try {
-      // print('me ejecute en el controller');
-      final response = await _transactionRepository.getTransactions();
-      // print('me ejecute despues del response en el controller');
-      _transactions = response;
-      notifyListeners();
-    } catch (err) {
-      // print(err.toString());
-
-      _handleError(
-          title: "Could not get transactions.", message: err.toString());
-    }
-  }
-
-  Future<void> fetchStates() async {
-    await getTransactions();
-  }
-
   void goToTransactionDetails({Transaction? transaction}) async {
     await _navigationService.navigateTo('/transaction-detail', arguments: {
       'transaction': transaction,
     });
+    print(transaction);
     notifyListeners();
   }
 }
 
-final transactionsProvider = ChangeNotifierProvider(
+final transactionsDetailsProvider = ChangeNotifierProvider(
   (ref) => TransactionViewController(
     snackbarService: locator<SnackbarService>(),
     navigationService: locator<NavigationService>(),

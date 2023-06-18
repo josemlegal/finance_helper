@@ -31,7 +31,12 @@ class _TransactionsViewState extends ConsumerState<TransactionsView> {
   Widget build(BuildContext context) {
     final transactionsViewController = ref.read(transactionsProvider);
 
-    final transactions = transactionsViewController.transactions;
+    final transactionList =
+        ref.watch(transactionsProvider.select((value) => value.transactions));
+
+    final transactions = transactionList.length > 2
+        ? transactionList.sublist(0, 3)
+        : transactionList;
 
     return Scaffold(
       appBar: AppBar(
@@ -41,12 +46,15 @@ class _TransactionsViewState extends ConsumerState<TransactionsView> {
         child: isLoading
             ? const CircularProgressIndicator()
             : ListOfTransactions(
-                transactions: transactions,
-                onPressed: transactionsViewController.goToTransactionDetails,
+                transactions: transactionsViewController.transactions,
+                callback: (transaction) {
+                  transactionsViewController.goToTransactionDetails(
+                      transaction: transaction[0]);
+                },
               ),
       ),
       floatingActionButton:
-          FloatingActionButton(onPressed: () => print(transactions)),
+          FloatingActionButton(onPressed: () => print(transactions.toList())),
     );
   }
 }

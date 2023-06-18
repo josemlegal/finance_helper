@@ -1,17 +1,26 @@
+import 'package:finance_helper/domain/transactions/models/transaction_model.dart';
 import 'package:finance_helper/presentation/home/widgets/transaction_form.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TransactionDetails extends StatelessWidget {
-  static const name = '/transaction-details';
-  const TransactionDetails({super.key});
+class TransactionDetails extends StatefulHookConsumerWidget {
+  final Transaction transaction;
 
+  const TransactionDetails({Key? key, required this.transaction})
+      : super(key: key);
+
+  @override
+  ConsumerState<TransactionDetails> createState() => _TransactionDetailsState();
+}
+
+class _TransactionDetailsState extends ConsumerState<TransactionDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Transaction Details'),
       ),
-      body: const _TxDetailsWidget(),
+      body: _TxDetailsWidget(widget.transaction),
       floatingActionButton: const Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -25,23 +34,25 @@ class TransactionDetails extends StatelessWidget {
 }
 
 class _TxDetailsWidget extends StatelessWidget {
-  const _TxDetailsWidget();
+  final Transaction transaction;
+
+  const _TxDetailsWidget(this.transaction);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.access_time_filled),
-          SizedBox(height: 10),
-          Text('Supermercado'),
-          SizedBox(height: 10),
-          Text('Bought some food'),
-          SizedBox(height: 10),
-          Text('Gs. 10000'),
-          SizedBox(height: 10),
-          Text('2021-10-10'),
+          const Icon(Icons.access_time_filled),
+          const SizedBox(height: 10),
+          Text(transaction.description),
+          const SizedBox(height: 10),
+          const Text('Bought some food'),
+          const SizedBox(height: 10),
+          Text('${transaction.amount} Gs'),
+          const SizedBox(height: 10),
+          const Text('2021-10-10'),
         ],
       ),
     );
