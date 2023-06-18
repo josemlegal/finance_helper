@@ -31,7 +31,7 @@ class MainApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       theme: appTheme.getTheme(),
       navigatorKey: services.StackedService.navigatorKey,
-      initialRoute: router.Router.onboardingView,
+      initialRoute: router.Router.homeView,
       onGenerateRoute: router.Router.generateRoute,
     );
   }
