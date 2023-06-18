@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class HttpService {
   final _dio = Dio();
-  String baseUrl =
-      "https://9a46-2803-2a00-9-bfdf-8131-3436-9ca5-ec42.ngrok-free.app/api";
+  String baseUrl = dotenv.env['NGROK_URL'] ?? "";
 
   HttpService() {
     _dio.options.baseUrl = baseUrl;
