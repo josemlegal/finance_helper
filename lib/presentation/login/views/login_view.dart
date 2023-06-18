@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:finance_helper/presentation/login/controllers/login_view_controller.dart';
 import 'package:flutter/material.dart';
