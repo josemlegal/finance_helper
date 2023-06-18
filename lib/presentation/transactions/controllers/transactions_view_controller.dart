@@ -54,10 +54,11 @@ class TransactionViewController extends ChangeNotifier {
     await getTransactions();
   }
 
-  void goToTransactionDetails() {
-    _navigationService.navigateTo(
-      '/transaction-details',
-    );
+  void goToTransactionDetails({Transaction? transaction}) async {
+    await _navigationService.navigateTo('/transaction-detail', arguments: {
+      'transaction': transaction,
+    });
+    notifyListeners();
   }
 }
 
