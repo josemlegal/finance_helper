@@ -17,7 +17,7 @@ class TransactionRepositoryImplementation implements TransactionRepository {
   @override
   Future<List<Transaction>> getTransactions() {
     return _call(() async {
-      final response = await _httpService.dio.get("/transaction");
+      final response = await _httpService.dio.get("/api/transaction");
 
       return (response.data as List)
           .map((transactions) => Transaction.fromJson(transactions))
