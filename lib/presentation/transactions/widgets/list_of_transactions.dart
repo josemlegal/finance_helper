@@ -1,27 +1,21 @@
 import 'package:finance_helper/domain/transactions/models/transaction_model.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ListOfTransactions extends StatefulHookConsumerWidget {
+class ListOfTransactions extends StatelessWidget {
   final List<Transaction> transactions;
-  final VoidCallback onPressed;
+  final Function? callback;
 
   const ListOfTransactions({
     Key? key,
     required this.transactions,
-    required this.onPressed,
+    this.callback,
   }) : super(key: key);
 
-  @override
-  ConsumerState<ListOfTransactions> createState() => _ListOfTransactionsState();
-}
-
-class _ListOfTransactionsState extends ConsumerState<ListOfTransactions> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (Transaction transaction in widget.transactions)
+        for (Transaction transaction in transactions)
           ListTile(
             visualDensity: VisualDensity.standard,
             // leading: Column(
@@ -44,7 +38,8 @@ class _ListOfTransactionsState extends ConsumerState<ListOfTransactions> {
               ],
             ),
             onTap: () {
-              widget.onPressed();
+              print(transaction);
+              if (callback != null) callback!(transactions);
             },
           )
       ],
