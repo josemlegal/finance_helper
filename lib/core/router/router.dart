@@ -1,3 +1,4 @@
+import 'package:finance_helper/domain/transactions/models/transaction_model.dart';
 import 'package:finance_helper/presentation/views.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,12 @@ class Router {
       case settingsView:
         return MaterialPageRoute(builder: (_) => const SettingsView());
       case transactionDetails:
-        return MaterialPageRoute(builder: (_) => const TransactionDetails());
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => TransactionDetails(
+            transaction: args['transaction'] as Transaction?,
+          ),
+        );
       case dashboardView:
         return MaterialPageRoute(builder: (_) => const DashboardView());
 
