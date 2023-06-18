@@ -27,7 +27,7 @@ class Router {
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (_) => TransactionDetails(
-            transaction: args['transaction'] as Transaction?,
+            transaction: args['transaction'] as Transaction,
           ),
         );
       case dashboardView:
