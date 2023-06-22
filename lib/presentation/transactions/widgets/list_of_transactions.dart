@@ -16,32 +16,36 @@ class ListOfTransactions extends StatelessWidget {
     return Column(
       children: [
         for (Transaction transaction in transactions)
-          ListTile(
-            visualDensity: VisualDensity.standard,
-            // leading: Column(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Icon(transaction.icon),
-            //   ],
-            // ),
-            title: Text(
-              transaction.description,
-            ),
-            subtitle:
-                Text("${transaction.description} \nGs. ${transaction.amount}"),
-            isThreeLine: true,
-            dense: true,
-            trailing: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.arrow_forward_ios),
-              ],
-            ),
-            onTap: () {
-              print(transaction);
-              if (callback != null) callback!(transactions);
-            },
-          )
+          transactions.isEmpty
+              ? const Center(
+                  child: Text("No hay transacciones"),
+                )
+              : ListTile(
+                  visualDensity: VisualDensity.standard,
+                  // leading: Column(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Icon(transaction.icon),
+                  //   ],
+                  // ),
+                  title: Text(
+                    transaction.description,
+                  ),
+                  subtitle: Text(
+                      "${transaction.description} \nGs. ${transaction.amount}"),
+                  isThreeLine: true,
+                  dense: true,
+                  trailing: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.arrow_forward_ios),
+                    ],
+                  ),
+                  onTap: () {
+                    print(transaction);
+                    if (callback != null) callback!(transactions);
+                  },
+                )
       ],
     );
   }
