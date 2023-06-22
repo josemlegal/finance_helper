@@ -6,19 +6,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class TransactionViewController extends ChangeNotifier {
-  final TransactionRepository _transactionRepository;
   final SnackbarService _snackbarService;
   final NavigationService _navigationService;
 
-  List<Transaction> _transactions = [];
+  final List<Transaction> _transactions = [];
   List<Transaction> get transactions => _transactions;
 
   TransactionViewController({
     required TransactionRepository transactionRepository,
     required SnackbarService snackbarService,
     required NavigationService navigationService,
-  })  : _transactionRepository = transactionRepository,
-        _snackbarService = snackbarService,
+  })  : _snackbarService = snackbarService,
         _navigationService = navigationService;
 
   void _handleError({String? title, String? message}) {
@@ -39,7 +37,6 @@ class TransactionViewController extends ChangeNotifier {
     await _navigationService.navigateTo('/transaction-detail', arguments: {
       'transaction': transaction,
     });
-    print(transaction);
     notifyListeners();
   }
 }
