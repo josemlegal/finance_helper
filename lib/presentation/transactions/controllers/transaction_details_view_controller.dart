@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class TransactionViewController extends ChangeNotifier {
-  final SnackbarService _snackbarService;
   final NavigationService _navigationService;
 
   final List<Transaction> _transactions = [];
@@ -14,24 +13,8 @@ class TransactionViewController extends ChangeNotifier {
 
   TransactionViewController({
     required TransactionRepository transactionRepository,
-    required SnackbarService snackbarService,
     required NavigationService navigationService,
-  })  : _snackbarService = snackbarService,
-        _navigationService = navigationService;
-
-  void _handleError({String? title, String? message}) {
-    if (title != null && message != null) {
-      _snackbarService.showSnackbar(
-        title: title,
-        message: message,
-      );
-    } else {
-      _snackbarService.showSnackbar(
-        title: "Something went wrong.",
-        message: "Please try again later.",
-      );
-    }
-  }
+  }) : _navigationService = navigationService;
 
   void goToTransactionDetails({Transaction? transaction}) async {
     await _navigationService.navigateTo('/transaction-detail', arguments: {
@@ -43,7 +26,6 @@ class TransactionViewController extends ChangeNotifier {
 
 final transactionsDetailsProvider = ChangeNotifierProvider(
   (ref) => TransactionViewController(
-    snackbarService: locator<SnackbarService>(),
     navigationService: locator<NavigationService>(),
     transactionRepository: locator<TransactionRepository>(),
   ),
